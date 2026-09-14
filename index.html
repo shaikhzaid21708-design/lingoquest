@@ -1,0 +1,272 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoQuest - Learn All Languages | Google Play Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 px-4 py-3 flex items-center justify-between shadow-xs">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-500/20">
+                <i class="fa-solid fa-earth-americas"></i>
+            </div>
+            <div>
+                <div class="flex items-center space-x-1.5">
+                    <h1 class="font-extrabold text-base bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">LingoQuest</h1>
+                    <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                        <i class="fa-solid fa-shield-check text-[9px]"></i> Play Verified
+                    </span>
+                </div>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">World Languages • Editor's Choice</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2.5">
+            <button onclick="simulateInstallApp()" class="hidden sm:flex items-center space-x-1.5 bg-slate-900 dark:bg-slate-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition shadow-xs">
+                <i class="fa-brands fa-google-play text-emerald-400"></i>
+                <span>Get App (APK)</span>
+            </button>
+            <div class="flex items-center space-x-1.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 px-3 py-1 rounded-full shadow-xs">
+                <i class="fa-solid fa-fire text-amber-500 text-sm animate-bounce"></i>
+                <span id="streakCount" class="text-xs font-bold text-amber-700 dark:text-amber-400">5 Days</span>
+            </div>
+            <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                <i id="themeIcon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto pb-24 md:pb-8 max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+        <!-- Play Store Banner -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="flex items-start space-x-4">
+                <img src="https://placehold.co/96x96/10b981/ffffff?text=LQ" alt="LingoQuest Logo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-md object-cover border border-emerald-500/20" onerror="this.src='https://placehold.co/96x96/10b981/ffffff?text=LQ'">
+                <div>
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-2.5 py-0.5 rounded-full">#4 Top Free in Education</span>
+                        <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-star text-amber-400"></i> 4.8 (142K reviews)</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black">LingoQuest: Learn Languages</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-xl">Master 100+ languages in the easiest gamified way. 100% Free with offline mode & AI mock tests.</p>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2.5 w-full md:w-auto">
+                <button onclick="simulateInstallApp()" class="flex-1 md:flex-initial bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-2xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2 text-sm whitespace-nowrap">
+                    <i class="fa-brands fa-google-play text-lg"></i>
+                    <span>Install on Play Store</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Promo Banner (₹99 for 3 Months) -->
+        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="z-10">
+                <div class="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-bolt text-yellow-300 mr-1"></i> Google Play Special Promo
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black">Unlock ALL World Languages for ₹99 / 3 Months!</h3>
+                <p class="text-xs sm:text-sm text-indigo-100 mt-1 max-w-xl">Get unlimited AI mock tests, offline audio pronunciation, and zero ads across 100+ global languages. Save 90% today!</p>
+            </div>
+            <button onclick="openSubscriptionModal()" class="z-10 bg-white text-indigo-700 hover:bg-indigo-50 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95 whitespace-nowrap text-sm">
+                Claim ₹99 Offer <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+        </div>
+
+        <!-- Tab Views Container -->
+        <div id="tabContent">
+            <!-- Learn Tab -->
+            <div id="view-learn" class="space-y-6">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div id="currentLangFlag" class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-2xl shadow-xs">
+                            🇪🇸
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Active Language</span>
+                            <h3 id="currentLangName" class="text-lg font-bold">Spanish (Español)</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Level 2 • 1,420 XP Earned</p>
+                        </div>
+                    </div>
+                    <button onclick="openLanguageSelector()" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center space-x-2">
+                        <i class="fa-solid fa-globe text-emerald-500"></i>
+                        <span>Switch Language (100+ Available)</span>
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold flex items-center space-x-2">
+                            <i class="fa-solid fa-bullseye text-brand-500"></i>
+                            <span>Daily XP Goal (45 / 50 XP)</span>
+                        </span>
+                        <span class="text-xs font-bold text-brand-600 dark:text-indigo-400">90% Completed</span>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-brand-600 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-extrabold text-slate-400 uppercase tracking-wider mb-3 flex items-center space-x-2">
+                        <i class="fa-solid fa-gamepad text-indigo-500"></i>
+                        <span>Gamified Learning & Practice</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div onclick="startMiniGame('match')" class="bg-white dark:bg-slate-800 hover:border-emerald-500 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-xs transition cursor-pointer group flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition transform">
+                                    <i class="fa-solid fa-puzzle-piece"></i>
+                                </div>
+                                <h4 class="font-bold text-base group-hover:text-emerald-600 transition">Word Match Game</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Match foreign vocabulary with correct meanings in 60 seconds.</p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                                <span>Play & Earn XP</span>
+                                <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <div onclick="startMiniGame('flashcard')" class="bg-white dark:bg-slate-800 hover:border-purple-500 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-xs transition cursor-pointer group flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition transform">
+                                    <i class="fa-solid fa-clone"></i>
+                                </div>
+                                <h4 class="font-bold text-base group-hover:text-purple-600 transition">Smart Flashcards</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Flip cards to master core phrases and pronunciation.</p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-bold text-purple-600 dark:text-purple-400">
+                                <span>Start Session</span>
+                                <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
+                        <div onclick="startMiniGame('roleplay')" class="bg-white dark:bg-slate-800 hover:border-blue-500 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-xs transition cursor-pointer group flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition transform">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <h4 class="font-bold text-base group-hover:text-blue-600 transition">AI Café Roleplay</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Practice conversational ordering in real-time AI.</p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-bold text-blue-600 dark:text-blue-400">
+                                <span>Chat Now</span>
+                                <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-extrabold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
+                            <i class="fa-solid fa-route text-indigo-500"></i>
+                            <span>Curriculum Path: Unit 1</span>
+                        </h3>
+                        <span class="text-xs bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-indigo-400 px-2.5 py-1 rounded-lg font-semibold">Basics & Greetings</span>
+                    </div>
+                    <div class="space-y-3" id="lessonList"></div>
+                </div>
+            </div>
+
+            <!-- Mock Test Tab -->
+            <div id="view-mock" class="hidden space-y-6">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-6 text-white shadow-md">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <i class="fa-solid fa-clipboard-question text-2xl text-yellow-300"></i>
+                        <h3 class="text-xl font-bold">Language Proficiency Mock Test</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-blue-100 mb-4">Evaluate your listening, vocabulary, and grammar retention. Receive an instant CEFR score (A1 to C2) and custom feedback.</p>
+                    <button onclick="startMockTest()" class="bg-white text-blue-700 hover:bg-blue-50 font-bold px-6 py-2.5 rounded-xl text-sm shadow transition">
+                        <i class="fa-solid fa-play mr-2"></i> Start 10-Question Mock Test
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+                    <h4 class="font-bold text-base mb-3">Recent Test History & Proficiency</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
+                                    92%
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-sm">Spanish A1 Foundation Test</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Completed 2 days ago • Level: CEFR A1+</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 px-3 py-1 rounded-lg">Passed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="view-progress" class="hidden space-y-6">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs text-center">
+                        <div class="w-10 h-10 mx-auto rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg mb-2">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Day Streak</span>
+                        <h4 class="text-xl font-extrabold mt-0.5">5 Days</h4>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs text-center">
+                        <div class="w-10 h-10 mx-auto rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg mb-2">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Total XP</span>
+                        <h4 class="text-xl font-extrabold mt-0.5">1,420</h4>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs text-center">
+                        <div class="w-10 h-10 mx-auto rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg mb-2">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Accuracy Rate</span>
+                        <h4 class="text-xl font-extrabold mt-0.5">88%</h4>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xs text-center">
+                        <div class="w-10 h-10 mx-auto rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg mb-2">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Words Mastered</span>
+                        <h4 class="text-xl font-extrabold mt-0.5">340</h4>
+                    </div>
+                </div>
+
+                <div c
